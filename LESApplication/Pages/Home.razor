@@ -1,0 +1,91 @@
+﻿@page "/"
+@using LESApplication.Models
+@using LESApplication.Services
+
+<PageTitle>LES</PageTitle>
+
+<h1>Lista Enlazada Simple</h1>
+
+<input type="text" name="valor" @bind-value="Valor" class="form-control" />
+<button @onclick="AgregarInicio" class="btn btn-success">Agregar nodo al Inicio</button>
+<button @onclick="AgregarFinal" class="btn btn-primary">Agregar nodo al final</button>
+
+
+<input type="text" name="valorBuscar" @bind-value="ValorBuscar" class="form-control" placeholder="Buscar nodo" />
+<button @onclick="BuscarNodoEnLista" class="btn btn-info">Buscar Nodo</button>
+<p>@MensajeBusqueda</p>
+
+<input type="text" name="valor" @bind-value="ValorX" class="form-control" />
+<button @onclick="AgregarDespuesDeX" class="btn btn-warning">Agregar después de X</button>
+<button @onclick="AgregarAntesDeX" class="btn btn-warning">Agregar antes de X</button>
+
+<ul class="list-group">
+    @{
+        Nodo nodoTemporal = Lista.PrimerNodo;
+        while (nodoTemporal != null)
+        {
+            <li class="list-group-item">@nodoTemporal.Informacion</li>
+            nodoTemporal = nodoTemporal.Referencia;
+        }
+    }
+</ul>
+
+@code{
+    public string Valor { get; set; }
+    public string ValorBuscar{ get; set; }
+    public string MensajeBusqueda{ get; set; }
+    public string ValorX { get; set; }
+
+    public LES Lista { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Lista = new LES();
+        base.OnInitialized();
+    }
+
+    public void AgregarFinal()
+    {
+        Lista.AgregarNodoFinal(CrearNodo());
+    }
+    public void AgregarInicio()
+    {
+        Lista.AgregarNodoInicio(CrearNodo());
+    }
+    public void BuscarNodoEnLista()
+    {
+        Nodo? nodoEncontrado = Lista.BuscarNodo(ValorBuscar);
+
+        if (nodoEncontrado != null)
+        {
+            MensajeBusqueda = $"Nodo '{ValorBuscar}' encontrado en memoria: {nodoEncontrado.GetHashCode()}";
+        }
+        else
+        {
+            MensajeBusqueda = "Nodo no encontrado";
+        }
+    }
+    public void AgregarDespuesDeX()
+    {
+        if (!string.IsNullOrEmpty(ValorX) && !string.IsNullOrEmpty(Valor))
+        {
+            Lista.AgregarNodoDespuesDeX(ValorX, Valor);
+        }
+    }
+    public void AgregarAntesDeX()
+    {
+        if (!string.IsNullOrEmpty(ValorX) && !string.IsNullOrEmpty(Valor))
+        {
+            Lista.AgregarNodoAntesDeX(ValorX, Valor);
+        }
+    }
+
+
+    Nodo CrearNodo()
+    {
+        Nodo nuevoNodo = new Nodo(Valor);
+        return nuevoNodo;
+    }
+
+
+}
