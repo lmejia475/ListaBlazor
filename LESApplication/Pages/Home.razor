@@ -10,6 +10,7 @@
 <button @onclick="AgregarInicio" class="btn btn-success">Agregar nodo al Inicio</button>
 <button @onclick="AgregarFinal" class="btn btn-primary">Agregar nodo al final</button>
 
+<<<<<<< HEAD
 
 <input type="text" name="valorBuscar" @bind-value="ValorBuscar" class="form-control" placeholder="Buscar nodo" />
 <button @onclick="BuscarNodoEnLista" class="btn btn-info">Buscar Nodo</button>
@@ -28,13 +29,27 @@
             nodoTemporal = nodoTemporal.Referencia;
         }
     }
+=======
+<ul class="list-group">
+@{
+    Nodo nodoTemporal = Lista.PrimerNodo;
+    while (nodoTemporal != null)
+    {
+      <li class="list-group-item">@nodoTemporal.Informacion</li>
+      nodoTemporal = nodoTemporal.Referencia;
+    }
+}
+>>>>>>> 2056943da303ca152d1a882aa374459971def641
 </ul>
 
 @code{
     public string Valor { get; set; }
+<<<<<<< HEAD
     public string ValorBuscar{ get; set; }
     public string MensajeBusqueda{ get; set; }
     public string ValorX { get; set; }
+=======
+>>>>>>> 2056943da303ca152d1a882aa374459971def641
 
     public LES Lista { get; set; }
 
@@ -52,6 +67,7 @@
     {
         Lista.AgregarNodoInicio(CrearNodo());
     }
+<<<<<<< HEAD
     public void BuscarNodoEnLista()
     {
         Nodo? nodoEncontrado = Lista.BuscarNodo(ValorBuscar);
@@ -80,6 +96,8 @@
         }
     }
 
+=======
+>>>>>>> 2056943da303ca152d1a882aa374459971def641
 
     Nodo CrearNodo()
     {

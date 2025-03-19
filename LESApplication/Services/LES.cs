@@ -1,4 +1,5 @@
 ﻿using LESApplication.Models;
+<<<<<<< HEAD
 using System.Threading.Channels;
 
 namespace LESApplication.Services
@@ -8,12 +9,24 @@ namespace LESApplication.Services
         public Nodo? PrimerNodo { get; set; }
         public Nodo? UltimoNodo { get; set; }
      
+=======
+
+namespace LESApplication.Services
+{
+    public class LES
+    {
+        public Nodo? PrimerNodo { get; set; }
+        public Nodo? UltimoNodo { get; set; }
+>>>>>>> 2056943da303ca152d1a882aa374459971def641
 
         public LES()
         {
             PrimerNodo = null;
             UltimoNodo = null;
+<<<<<<< HEAD
  
+=======
+>>>>>>> 2056943da303ca152d1a882aa374459971def641
         } 
 
         bool EstaVacia()
@@ -49,6 +62,7 @@ namespace LESApplication.Services
             }
             return "Nodo agregado al final de la lista";
         }
+<<<<<<< HEAD
         public Nodo? BuscarNodo(string x)
         {
             Nodo? actual = PrimerNodo;
@@ -121,5 +135,7 @@ namespace LESApplication.Services
         }
 
 
+=======
+>>>>>>> 2056943da303ca152d1a882aa374459971def641
     }
 }
